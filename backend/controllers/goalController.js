@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler"
+import Goal from "../models/mongo/goal.mongo.model.js"
 
 // @desc    Get goals
 // @route   GET /api/goals
