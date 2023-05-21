@@ -1,6 +1,10 @@
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
+import colors from "colors"
+
+// Local Imports
+import { mongooseConnect } from "../config/db.js"
 import { errorHandler } from "./middleware/errorMiddleware.js"
 import goalRoutes from "./routes/goalRoutes.js"
 
