@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Traversy Media Goalsetter App Tutorial",
   "private": "true",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
