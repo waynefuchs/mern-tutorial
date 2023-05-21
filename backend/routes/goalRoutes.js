@@ -9,21 +9,7 @@ import {
   deleteGoal,
 } from "../controllers/goalController.js"
 
-// Get all goals
-router.get("/", getGoals)
-
-// Get a goal
-router.get("/:id", (req, res) => {
-  res.status(200).json({ message: `Get goal ${req.params.id}` })
-})
-
-// Create a goal
-router.post("/", setGoal)
-
-// Update a goal
-router.put("/:id", updateGoal)
-
-// Delete a goal
-router.delete("/:id", deleteGoal)
+router.route("/").get(getGoals).post(setGoal)
+router.route("/:id").get(getGoal).put(updateGoal).delete(deleteGoal)
 
 export default router
