@@ -16,6 +16,10 @@ export const getGoal = (req, res) => {
 // @route   POST /api/goals
 // @access  Private
 export const setGoal = (req, res) => {
+  if (!req.body?.text) {
+    res.status(400)
+    throw new Error("A 'text' field is required")
+  }
   res.status(200).json({ message: "Set Goal" })
 }
 
