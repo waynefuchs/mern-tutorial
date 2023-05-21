@@ -8,6 +8,8 @@ import { mongooseConnect } from "./config/db.js"
 import { errorHandler } from "./middleware/errorMiddleware.js"
 import goalRoutes from "./routes/goalRoutes.js"
 
+// Initialization
+mongooseConnect()
 const port = process.env.PORT || 5000
 const app = express()
 
