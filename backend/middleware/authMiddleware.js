@@ -15,17 +15,15 @@ export const protect = asyncHandler(async (req, res, next) => {
     try {
       token = req.headers.authorization.split(" ")[1]
       const decoded = jwt.verify(token, JWT_SECRET)
-      console.dir(decoded)
       req.user = await User.findById(decoded.id).select("-password")
       return next()
     } catch (err) {
-      console.error("Caught Error", err)
-      token = null
+      // TODO: This should not be in production (very useful for debugging)
+      throw new Error("Caught authorization error", err)
     }
   }
 
   // Failed Validation
-  console.log("Validation Failed")
   res.status(401)
   throw new Error("Not authorized")
 })

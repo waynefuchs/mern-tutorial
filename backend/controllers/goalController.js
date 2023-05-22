@@ -31,12 +31,7 @@ export const setGoal = asyncHandler(async (req, res) => {
     throw new Error("A 'text' field is required")
   }
 
-  const goalObject = { text, user }
-  const goal = await Goal.create(goalObject)
-
-  console.log("------------------------------------------")
-  console.warn(goalObject)
-  console.log(goal)
+  const goal = await Goal.create({ text, user })
   res.status(200).json({ goal })
 })
 
@@ -60,10 +55,10 @@ export const updateGoal = asyncHandler(async (req, res) => {
     throw new Error("User not authorized")
   }
 
+  // Update the goal and return it
   const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   })
-
   res.status(200).json({ updatedGoal })
 })
 
@@ -87,6 +82,7 @@ export const deleteGoal = asyncHandler(async (req, res) => {
     throw new Error("User not authorized")
   }
 
+  // Delete the goal and return deleted id
   await goal.deleteOne()
   res.status(200).json({ id: req.params.id })
 })

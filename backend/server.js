@@ -26,4 +26,9 @@ app.use("/api/users", userRoutes)
 app.use(errorHandler)
 
 // Start the server
-app.listen(port, () => console.log(`Server started on port ${port}`))
+app.listen(port, () =>
+  console.log(
+    "HTTP Server started on".padEnd(process.env.CONSOLE_TAB_SIZE, "."),
+    `http://localhost:${port}`.cyan.underline
+  )
+)
