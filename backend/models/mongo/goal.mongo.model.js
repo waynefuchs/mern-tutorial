@@ -7,8 +7,6 @@ const goalSchema = mongoose.Schema(
       required: [true, "User ObjectId is required"],
       ref: "User",
     },
-  },
-  {
     text: {
       type: String,
       required: [true, "Please add a text value"],
