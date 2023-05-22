@@ -6,7 +6,6 @@ import colors from "colors"
 // Local Imports
 import { mongooseConnect } from "./config/db.js"
 import { errorHandler } from "./middleware/errorMiddleware.js"
-import goalRoutes from "./routes/goalRoutes.js"
 
 // Initialization
 mongooseConnect()
@@ -18,7 +17,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 // Routes
+import goalRoutes from "./routes/goalRoutes.js"
 app.use("/api/goals", goalRoutes)
+import userRoutes from "./routes/userRoutes.js"
+app.use("/api/users", userRoutes)
 
 // Overwrite default express error handling
 app.use(errorHandler)
