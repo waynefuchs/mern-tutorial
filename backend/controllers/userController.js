@@ -41,11 +41,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Return user data
-  res.status(201).json({
-    _id: user.id,
-    name: user.name,
-    email: user.email,
-  })
+  res.status(201).json(getUserObject(user))
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,11 +69,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 
   // Successfully authenticated
-  res.json({
-    _id: user.id,
-    name: user.name,
-    email: user.email,
-  })
+  res.json(getUserObject(user))
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +79,27 @@ export const loginUser = asyncHandler(async (req, res) => {
 export const getSession = asyncHandler(async (req, res) => {
   res.json({ message: "Get logged in user data" })
 })
+
+////////////////////
+// Utility Functions
+////////////////////
+
+// Generate JWT
+const generateToken = (id) => {
+  const { JWT_SECRET, JWT_EXPIRATION } = process.env
+  if (!JWT_SECRET || !JWT_EXPIRATION)
+    throw new Error("JWT Environment Not Found")
+  return jwt.sign({ id }, JWT_SECRET, { expiresIn: JWT_EXPIRATION })
+}
+
+// Return User Object from Database
+const getUserObject = (user, includeToken = true) => {
+  if (!user || !user.id || !user.name || !user.email) return null
+  const userObject = {
+    _id: user.id,
+    name: user.name,
+    email: user.email,
+  }
+  if (includeToken) userObject.token = generateToken(user.id)
+  return userObject
+}
