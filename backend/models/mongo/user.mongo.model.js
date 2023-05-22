@@ -21,4 +21,4 @@ const userSchema = mongoose.Schema(
   }
 )
 
-export default mongoose.model("User", goalSchema)
+export default mongoose.model("User", userSchema)
