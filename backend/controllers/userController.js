@@ -77,7 +77,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/session
 // @access  Private
 export const getSession = asyncHandler(async (req, res) => {
-  res.json({ message: "Get logged in user data" })
+  res.json(getUserObject(req.user, false))
 })
 
 ////////////////////

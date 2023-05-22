@@ -1,6 +1,8 @@
 import express from "express"
 const router = express.Router()
 
+import { protect } from "../middleware/authMiddleware.js"
+
 import {
   registerUser,
   loginUser,
@@ -9,6 +11,6 @@ import {
 
 router.post("/", registerUser)
 router.post("/login", loginUser)
-router.get("/session", getSession)
+router.get("/session", protect, getSession)
 
 export default router
