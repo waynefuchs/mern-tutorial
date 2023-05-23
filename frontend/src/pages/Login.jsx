@@ -50,6 +50,9 @@ function Login() {
   }
 
   /////////////////////////////////////////////////////////////////////// OUTPUT
+  if (isLoading) return <Spinner />
+  if (user) return <Spinner />
+
   return (
     <>
       <section className="heading">
