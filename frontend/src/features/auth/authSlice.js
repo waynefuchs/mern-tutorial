@@ -50,20 +50,13 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // can not set to initial state
-    // need the user to persist
-    // TODO: try spread operator (?) {...initialState, user: state.user} (?)
-    // TODO: This is not DRY
     reset: (state) => {
-      state.isLoading = false
-      state.isSuccess = false
-      state.isError = false
-      state.message = ""
+      return { ...initialState, user: state.user }
     },
   },
   extraReducers: (builder) => {
     builder
-      // Register Cases
+      // Loading States
       .addCase(register.pending, (state) => {
         state.isLoading = true
       })
@@ -80,7 +73,7 @@ export const authSlice = createSlice({
         state.user = null
       })
 
-      // Login Cases
+      // Login States
       .addCase(login.pending, (state) => {
         state.isLoading = true
       })
@@ -97,7 +90,7 @@ export const authSlice = createSlice({
         state.user = null
       })
 
-      // Logout Cases
+      // Logout States
       .addCase(logout.fulfilled, (state) => {
         state.user = null
       })
