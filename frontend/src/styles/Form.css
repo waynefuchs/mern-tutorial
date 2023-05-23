@@ -11,9 +11,9 @@
 .form-group input,
 .form-group button {
   font-family: inherit;
-  font-size: large;
+  font-size: x-large;
+  padding: var(--padding);
   font-weight: bold;
-  padding: 1em;
   margin: 1em 0;
   border-radius: 5px;
   color: var(--c-light);

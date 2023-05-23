@@ -11,13 +11,14 @@ header {
 header > ul {
   display: flex;
   flex-direction: row;
-  gap: 0.5em;
+  gap: var(--gap);
 }
 
 header > ul > li > a {
   display: flex;
   align-items: center;
-  gap: 0.25em;
+  gap: var(--gap);
+  padding: 0 var(--gap);
 }
 
 .logo {
