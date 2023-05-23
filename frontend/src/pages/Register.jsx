@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import { register, reset } from "../features/auth/authSlice"
 import { FaUser } from "react-icons/fa"
+import Spinner from "../components/Spinner"
 
 import "../styles/Form.css"
 
 function Register() {
-  // State
+  //////////////////////////////////////////////////////////////////////// STATE
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,7 +20,21 @@ function Register() {
   // Destructured State (read-only)
   const { name, email, password, password2 } = formData
 
-  // Helper Functions
+  //////////////////////////////////////////////////////////////////////// REACT
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) toast.error(message)
+    if (isSuccess || user) navigate("/")
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  ///////////////////////////////////////////////////////////// HELPER FUNCTIONS
+  // Form Input Changed
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -23,9 +42,24 @@ function Register() {
     }))
   }
 
+  // Form Submitted
   const onSubmit = (e) => {
     e.preventDefault()
+
+    // Check if passwords match
+    if (password !== password2) {
+      toast.error("Passwords do not match")
+      return
+    }
+
+    // Use axios to hit the backend api to register a new user
+    const userData = { name, email, password }
+    dispatch(register(userData))
   }
+
+  /////////////////////////////////////////////////////////////////////// OUTPUT
+  if (isLoading) return <Spinner />
+  if (user) return <Spinner />
 
   return (
     <>

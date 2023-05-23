@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import { login, reset } from "../features/auth/authSlice"
 import { FaSignInAlt } from "react-icons/fa"
+import Spinner from "../components/Spinner"
 
 import "../styles/Form.css"
 
 function Login() {
-  // State
+  //////////////////////////////////////////////////////////////////////// STATE
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,7 +18,21 @@ function Login() {
   // Destructured State (read-only)
   const { name, email, password, password2 } = formData
 
-  // Helper Functions
+  //////////////////////////////////////////////////////////////////////// REACT
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    if (isError) toast.error(message)
+    if (isSuccess || user) navigate("/")
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  ///////////////////////////////////////////////////////////// HELPER FUNCTIONS
+  // Form Input Changed
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -21,10 +40,16 @@ function Login() {
     }))
   }
 
+  // Form Submitted
   const onSubmit = (e) => {
     e.preventDefault()
+
+    // Use axios to hit the backend api to login a user
+    const userData = { email, password }
+    dispatch(login(userData))
   }
 
+  /////////////////////////////////////////////////////////////////////// OUTPUT
   return (
     <>
       <section className="heading">
