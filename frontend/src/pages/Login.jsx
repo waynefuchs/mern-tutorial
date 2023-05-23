@@ -18,7 +18,7 @@ function Login() {
   // Destructured State (read-only)
   const { name, email, password, password2 } = formData
 
-  //////////////////////////////////////////////////////////////////////// REACT
+  //////////////////////////////////////////////////////////////////////// SETUP
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
