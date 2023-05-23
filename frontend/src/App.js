@@ -1,8 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+import "./styles/App.css"
+
 function App() {
   return (
-    <div>
-      <h1>Goals App</h1>
-    </div>
+    <>
+      <Router>
+        <div className="App">
+          <h1>Goals App</h1>
+        </div>
+      </Router>
+    </>
   )
 }
 
