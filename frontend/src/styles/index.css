@@ -6,3 +6,24 @@
 html {
   font-family: Kanit !important;
 }
+
+body {
+  background-color: var(--c-dark);
+  color: var(--c-light);
+  padding: 1em;
+  font-size: x-large;
+}
+
+a {
+  color: var(--c-light);
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}

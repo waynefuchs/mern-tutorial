@@ -1,0 +1,27 @@
+.form {
+  width: 70%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+
+.form-group input,
+.form-group button {
+  font-family: inherit;
+  font-size: large;
+  font-weight: bold;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 5px;
+  color: var(--c-light);
+  background-color: var(--c-dark);
+  border: 1px solid var(--c-light);
+}
+
+.form-group button {
+  color: var(--c-dark);
+  background-color: var(--c-2a);
+}
