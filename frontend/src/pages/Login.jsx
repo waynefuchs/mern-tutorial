@@ -40,7 +40,7 @@ function Login() {
     }))
   }
 
-  // Form Submitted
+  // Form Submitted (Login)
   const onSubmit = (e) => {
     e.preventDefault()
 
