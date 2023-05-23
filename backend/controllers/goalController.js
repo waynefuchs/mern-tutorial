@@ -7,16 +7,7 @@ import Goal from "../models/mongo/goal.mongo.model.js"
 // @access  Private
 export const getGoals = asyncHandler(async (req, res) => {
   const goals = await Goal.find({ user: req.user.id })
-  res.status(200).json({ goals })
-})
-
-//////////////////////////////////////////////////////////////////////// READ:ID
-// @desc    Get goal
-// @route   GET /api/goals/:id
-// @access  Private
-// @TODO:   Delete this(?) I don't think this is useful to anyone
-export const getGoal = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Get goal ${req.params.id}` })
+  res.status(200).json(goals)
 })
 
 ///////////////////////////////////////////////////////////////////////// CREATE
@@ -35,7 +26,7 @@ export const setGoal = asyncHandler(async (req, res) => {
 
   // Create the goal and return it
   const goal = await Goal.create({ text, user })
-  res.status(200).json({ goal })
+  res.status(200).json(goal)
 })
 
 ///////////////////////////////////////////////////////////////////////// UPDATE
@@ -62,7 +53,7 @@ export const updateGoal = asyncHandler(async (req, res) => {
   const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   })
-  res.status(200).json({ updatedGoal })
+  res.status(200).json(updatedGoal)
 })
 
 ///////////////////////////////////////////////////////////////////////// DELETE
