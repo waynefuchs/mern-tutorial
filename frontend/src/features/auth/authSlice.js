@@ -50,6 +50,10 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    // can not set to initial state
+    // need the user to persist
+    // TODO: try spread operator (?) {...initialState, user: state.user} (?)
+    // TODO: This is not DRY
     reset: (state) => {
       state.isLoading = false
       state.isSuccess = false
