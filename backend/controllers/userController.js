@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs"
 import asyncHandler from "express-async-handler"
 import User from "../models/mongo/user.mongo.model.js"
 
-////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////// REGISTER
 // @desc    Register New User
 // @route   POST /api/users
 // @access  Public
@@ -44,7 +44,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   res.status(201).json(getUserObject(user))
 })
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////// LOGIN
 // @desc    Authenticate a User
 // @route   POST /api/users/login
 // @access  Public
@@ -72,7 +72,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   res.json(getUserObject(user))
 })
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////// SESSION
 // @desc    Get logged in user data
 // @route   GET /api/session
 // @access  Private
@@ -80,10 +80,7 @@ export const getSession = asyncHandler(async (req, res) => {
   res.json(getUserObject(req.user, false))
 })
 
-////////////////////
-// Utility Functions
-////////////////////
-
+//////////////////////////////////////////////////////////////////////// UTILITY
 // Generate JWT
 const generateToken = (id) => {
   const { JWT_SECRET, JWT_EXPIRATION } = process.env
