@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import "../styles/GoalItem.css"
+
 function GoalItem({ goal }) {
   return (
     <li className="goal-card">

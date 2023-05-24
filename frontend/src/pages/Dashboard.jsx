@@ -19,7 +19,7 @@ function Dashboard() {
     if (isError) console.log(message)
     if (!user) navigate("/login")
     dispatch(getGoals())
-    dispatch(reset())
+    // dispatch(reset()) <-- this line causes hanging on the front end
   }, [user, navigate, isError, message, dispatch])
 
   /////////////////////////////////////////////////////////////////////// OUTPUT
