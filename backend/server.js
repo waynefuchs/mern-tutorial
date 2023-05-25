@@ -1,3 +1,4 @@
+import path from "path"
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
@@ -21,6 +22,9 @@ import goalRoutes from "./routes/goalRoutes.js"
 app.use("/api/goals", goalRoutes)
 import userRoutes from "./routes/userRoutes.js"
 app.use("/api/users", userRoutes)
+
+if (process.env.NODE_ENV === "production") {
+}
 
 // Overwrite default express error handling
 app.use(errorHandler)
