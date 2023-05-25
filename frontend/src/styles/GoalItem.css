@@ -1,0 +1,39 @@
+.goal-card {
+  border-radius: 5px;
+  padding: var(--padding);
+  border: 1px solid var(--c-light);
+  box-shadow: 2px 2px 5px var(--c-2a);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  gap: var(--gap);
+  flex: 1 0 auto;
+  height: stretch;
+}
+
+.goal-card > div {
+  color: var(--c-1b);
+  height: fit-content;
+  min-width: calc(100% - 2em);
+}
+
+.goal-card > button {
+  height: fit-content;
+}
+
+.goal-card > h2 {
+  height: fit-content;
+  margin: 0;
+}
+
+.goal-card > button {
+  color: var(--c-light);
+  background-color: var(--c-2b);
+  border: 1px solid var(--c-light);
+  border-radius: 5px;
+  width: 2.5em;
+  height: 2.5em;
+}

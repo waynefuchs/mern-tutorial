@@ -6,6 +6,8 @@ import GoalForm from "../components/GoalForm"
 import GoalItem from "../components/GoalItem"
 import Spinner from "../components/Spinner"
 
+import "../styles/Dashboard.css"
+
 function Dashboard() {
   //////////////////////////////////////////////////////////////////////// STATE
   const navigate = useNavigate()
@@ -16,10 +18,15 @@ function Dashboard() {
   )
 
   useEffect(() => {
+    // Error Handling
+    if (!user) return navigate("/login")
     if (isError) console.log(message)
-    if (!user) navigate("/login")
+
+    // Poll a goal list from the server
     dispatch(getGoals())
-    // dispatch(reset()) <-- this line causes hanging on the front end
+
+    // Clean-up (Component Destruction)
+    return () => dispatch(reset)
   }, [user, navigate, isError, message, dispatch])
 
   /////////////////////////////////////////////////////////////////////// OUTPUT
@@ -34,7 +41,7 @@ function Dashboard() {
 
       <GoalForm />
 
-      <ul>
+      <ul className="goals">
         {goals.length > 0 ? (
           goals.map((goal) => <GoalItem key={goal._id} goal={goal} />)
         ) : (

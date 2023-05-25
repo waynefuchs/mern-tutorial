@@ -1,0 +1,8 @@
+ul.goals {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  padding-top: 0.5em;
+  gap: 1em;
+  align-items: center;
+  width: 70%;
+}
