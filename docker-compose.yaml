@@ -1,0 +1,46 @@
+#############
+# GOALS APP #
+#############
+
+version: "3.9"
+
+services:
+  # MongoDB service
+  goalsapp-mongodb:
+    container_name: goalsapp-mongodb
+    image: mongo:latest
+    restart: always
+    networks:
+      - goalsapp
+    volumes:
+      - goalsapp-mongodb:/data/db
+
+  # Node.js API service
+  goalsapp-backend:
+    container_name: goalsapp-backend
+    image: waynefuchs/goalsapp-backend
+    build: ./backend
+    restart: always
+    networks:
+      - goalsapp
+    depends_on:
+      - goalsapp-mongodb
+
+  frontend-goals:
+    container_name: goalsapp-frontend
+    image: waynefuchs/goalsapp-frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - goalsapp
+    depends_on:
+      - goalsapp-backend
+
+# Data persistence
+volumes:
+  goalsapp-mongodb: {}
+
+networks:
+  goalsapp:
