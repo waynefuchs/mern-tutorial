@@ -2,7 +2,7 @@
 # GOALS APP #
 #############
 
-version: "3.9"
+version: "3"
 
 services:
   # MongoDB service
@@ -15,7 +15,7 @@ services:
     volumes:
       - goalsapp-mongodb:/data/db
 
-  # Node.js API service
+  # Node.js API (Backend)
   goalsapp-backend:
     container_name: goalsapp-backend
     image: waynefuchs/goalsapp-backend
@@ -26,7 +26,8 @@ services:
     depends_on:
       - goalsapp-mongodb
 
-  frontend-goals:
+  # Nginx (Frontend)
+  goalsapp-frontend:
     container_name: goalsapp-frontend
     image: waynefuchs/goalsapp-frontend
     build: ./frontend
